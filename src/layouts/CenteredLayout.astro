@@ -1,0 +1,11 @@
+---
+import AppLayout from '@/layouts/AppLayout.astro';
+
+const {
+    title
+} = Astro.props;
+---
+
+<AppLayout title={title} mainCls={"container h-screen flex items-center justify-center"}>
+    <slot />
+</AppLayout>
