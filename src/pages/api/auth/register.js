@@ -8,10 +8,10 @@ export const POST = async ({request, redirect}) => {
     const auth = getAuth(app);
 
     // get form data
-    const formData = await request.formData();
-    const email = formData.get('email')?.toString();
-    const password = formData.get('password')?.toString();
-    const name = formData.get('name')?.toString();
+    const data = await request.json();
+    const email = data.email;
+    const password = data.password;
+    const name = data.name
 
     if(!email || !password || !name){
         return new Response("Missing fields", {status: 400});
@@ -26,7 +26,11 @@ export const POST = async ({request, redirect}) => {
         });
     } catch(e) {
         console.error(e);
-        return new Response("Something went wrong", {status: 400});
+        let errorMessage = "Something went wrong";
+        if(e.errorInfo) {
+            errorMessage = e.errorInfo.message;
+        }
+        return new Response(errorMessage, {status: 400});
     }
 
     return redirect("/signin");

@@ -1,42 +1,9 @@
 ---
 import CenteredLayout from "@/layouts/CenteredLayout.astro"
-import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+import RegisterationCard from '@/components/forms/registerationCard'
 ---
 
 <CenteredLayout title="Register">
+    <RegisterationCard client:load/>
 
-<Card className="w-[350px]">
-    <CardHeader>
-        <CardTitle>Register</CardTitle>
-        <CardDescription>Already have an account? <a href="/login">Login</a></CardDescription>
-    </CardHeader>
-    <CardContent>
-
-    <form id="registeration-form" action="/api/auth/register" method="POST">
-    <div class="grid w-full items-center gap-4">
-        <div class="flex flex-col space-y-1.5">
-            <Label htmlFor="name">Name</Label>
-            <Input type="text" name="name" id="name" placeholder="Name" required/>
-        </div>
-
-        <div class="flex flex-col space-y-1.5">
-            <Label htmlFor="email">Email</Label>
-            <Input type="email" name="email" id="email" placeholder="Email" />
-        </div>
-
-        <div class="flex flex-col space-y-1.5">
-            <Label htmlFor="password">Password</Label>
-            <Input type="password" name="password" id="password" placeholder="Password" />
-        </div>
-
-    </div>
-    </form>
-    </CardContent>
-    <CardFooter className="flex-wrap">
-        <Button type="submit" form="registeration-form" className="basis-full">Register</Button>
-    </CardFooter>
-</Card>
 </CenteredLayout>
