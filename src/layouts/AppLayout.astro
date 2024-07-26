@@ -1,18 +1,22 @@
 ---
 import Layout from '@/layouts/Layout.astro'
-import { Button }from '@/components/ui/button'
+import { Button, buttonVariants }from '@/components/ui/button'
 
 const {
     title,
-    mainCls = "container max-w-[800px]"
+    mainCls = "container max-w-[800px] min-h-[calc(100vh-4rem)]"
 } = Astro.props;
 ---
 <Layout title={title}>
 <header class="flex flex-row justify-between items-center h-16 py-2 px-8">
-    <img src="https://via.placeholder.com/150" alt="logo" class="h-12 w-12"/>
-    <Button asChild>
-        <a href="/signin">Login</a>
-    </Button>
+    <div class="flex flex-row items-center gap-2">
+        <img src="https://via.placeholder.com/150" alt="logo" class="h-12 w-12"/>
+        <div>Logo</div>
+    </div>
+    <nav class="flex flex-row gap-4">
+        <a class={buttonVariants({variant: 'link'})} href="/signin">Login</a>
+        <a class={buttonVariants({variant: 'default'})} href="/register">Sign Up</a>
+    </nav>
 </header>
 <main class={mainCls}>
     <slot/>

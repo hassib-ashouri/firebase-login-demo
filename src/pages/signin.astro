@@ -6,6 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter }
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/button';
+import LoginWithGoogle from '@/components/ui/loginWithGoogleBtn';
 
 // check if user is authenticated
 const auth = getAuth(app);
@@ -40,15 +41,19 @@ if(Astro.cookies.has("__session")) {
     </div>
     </form>
     </CardContent>
-    <CardFooter>
-        <Button type="submit" form="login-form">Login</Button>
-        <Button id="google">Login with Google</Button>
+    <CardFooter className="flex-wrap">
+        <Button type="submit" form="login-form" className="basis-full">Login</Button>
+        <div class="flex items-center my-4 basis-full *:border-stone-300 *:text-stone-300">
+            <div class="flex-grow basis-full border-t-2"/>
+            <span class="mx-2 pb-1">or</span>
+            <div class="flex-grow basis-full border-t-2"/>
+        </div>
+        <LoginWithGoogle className="basis-full" id="google" client:load/>
     </CardFooter>
 </Card>
 </CenteredLayout>
 <script>
-    import { getAuth, inMemoryPersistence, signInWithEmailAndPassword,
-    GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+    import { getAuth, inMemoryPersistence, signInWithEmailAndPassword } from 'firebase/auth';
     import { app } from '../firebase/client';
 
     const auth = getAuth(app);
@@ -90,24 +95,5 @@ if(Astro.cookies.has("__session")) {
         }
     });
 
-    const googleButton = document.getElementById('google');
-    googleButton.addEventListener('click', async () => {
-        const provider = new GoogleAuthProvider();
-        const userCredential = await signInWithPopup(auth, provider);
-        const idToken = await userCredential.user.getIdToken();
-
-        const res = await fetch('/api/auth/signin', {
-            method: 'GET',
-            headers: {
-                Authorization: `Bearer ${idToken}`
-            }
-        })
-
-        if(res.redirected) {
-            window.location.assign(res.url);
-        }
-
-
-    });
 
 </script>
