@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants }from '@/components/ui/button'
 import { Loader2, Check } from "lucide-react";
 
 // form states loading, error, success, draft
@@ -63,7 +63,7 @@ function RegistrationCard(props) {
         <Card className="w-[350px]">
         <CardHeader>
         <CardTitle>Register</CardTitle>
-        <CardDescription>Already have an account? <a href="/login">Login</a></CardDescription>
+        <CardDescription>Already have an account? <a className={buttonVariants({variant: "link"}) + " !p-0"} href="/login">Login</a></CardDescription>
         </CardHeader>
         <CardContent>
 
