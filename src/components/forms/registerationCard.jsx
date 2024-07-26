@@ -14,7 +14,6 @@ const FORM_STATES = {
 }
 
 function RegistrationCard(props) {
-    const [isLoading, setIsLoading] = useState(false);
     const [formState, setFormState] = useState(FORM_STATES.DRAFT);
     const [error, setError] = useState(null);
 
