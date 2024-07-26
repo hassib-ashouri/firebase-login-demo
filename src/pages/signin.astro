@@ -5,7 +5,7 @@ import { getAuth } from 'firebase-admin/auth';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Button } from '@/components/ui/button';
+import { Button, buttonVariants }from '@/components/ui/button'
 import LoginWithGoogle from '@/components/ui/loginWithGoogleBtn';
 
 // check if user is authenticated
@@ -23,7 +23,7 @@ if(Astro.cookies.has("__session")) {
 <Card className="w-[350px]">
     <CardHeader>
         <CardTitle>Login</CardTitle>
-        <CardDescription>Enter your email and password to login. New user? <a href="/register">Resigter here</a></CardDescription>
+        <CardDescription>Enter your email and password to login. New user? <a class:list={[buttonVariants({variant: 'link'}), "!p-0"]} href="/register">Resigter here</a></CardDescription>
     </CardHeader>
     <CardContent>
 
