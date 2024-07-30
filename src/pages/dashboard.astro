@@ -1,28 +1,16 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import { app } from '../firebase/server.js';
-import { getAuth } from 'firebase-admin/auth'
+import CenteredLayout from '@/layouts/CenteredLayout.astro';
+import { getAuthenticatedUser } from '@/firebase/serverUtils.js';
 
-const auth = getAuth(app);
+const user = await getAuthenticatedUser(Astro.cookies);
+const isUserAuthenticated = !!user;
 
-/* check current session */
-if(!Astro.cookies.get('__session')) {
+if (isUserAuthenticated === false) {
     return Astro.redirect('/signin');
 }
-/* get the user */
-const sessionCookies = Astro.cookies.get('__session').value;
-const decodedCookies = await auth.verifySessionCookie(sessionCookies);
-const user = await auth.getUser(decodedCookies.uid);
 
-/* redirect to sign in if user is not found */
-if(!user) {
-    return Astro.redirect('/signin');
-}
 ---
-<Layout title="Dashboard">
-    <h1>Welcome {user.displayName}</h1>
+<CenteredLayout title="Dashboard" isUserAuthenticated={isUserAuthenticated}>
+    <h1>Welcome <span class="font-bold">{user.displayName}</span></h1>
     <p>This is a protected dashboard that only you can see.</p>
-    <form action="/api/auth/signout" method="GET">
-        <button type="submit" id="signout-btn">Sign out</button>
-    </form>
-</Layout>
+</CenteredLayout>
