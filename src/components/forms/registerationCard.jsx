@@ -63,7 +63,7 @@ function RegistrationCard(props) {
         <Card className="w-[350px]">
         <CardHeader>
         <CardTitle>Register</CardTitle>
-        <CardDescription>Already have an account? <a className={buttonVariants({variant: "link"}) + " !p-0"} href="/login">Login</a></CardDescription>
+        <CardDescription>Already have an account? <a className={buttonVariants({variant: "link"}) + " !p-0"} href="/signin">Login</a></CardDescription>
         </CardHeader>
         <CardContent>
 
