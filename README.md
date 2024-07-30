@@ -1,5 +1,5 @@
 # Firebase Login Demo
-This is a demo of how to use Firebase Authentication with Astro. It uses the Firebase JavaScript SDK to authenticate users with Google, Facebook, Twitter, and GitHub.
+This is a responsive demo site of how to use Firebase Authentication with Astro. It uses the Firebase JavaScript SDK to authenticate users with Google, Facebook, Twitter, and GitHub.
 
 ## 👀 Want to learn more Astro?
 
