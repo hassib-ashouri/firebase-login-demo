@@ -18,7 +18,7 @@ const {
     <nav class="flex flex-row gap-4">
         <a class:list={[buttonVariants({variant: 'link'}), {hidden: isUserAuthenticated }]} href="/signin">Login</a>
         <a class:list={[buttonVariants({variant: 'default'}), {hidden: isUserAuthenticated } ]} href="/register">Sign Up</a>
-        <form class:list={[{'*:hidden': !isUserAuthenticated }]} action="/api/auth/signout" method="GET">
+        <form class:list={[{'*:hidden hidden': !isUserAuthenticated }]} action="/api/auth/signout" method="GET">
             <Button type="submit">Sign out</Button>
         </form>
     </nav>
