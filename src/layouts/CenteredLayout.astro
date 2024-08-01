@@ -2,10 +2,14 @@
 import AppLayout from '@/layouts/AppLayout.astro';
 
 const {
-    title
+    title,
+    isUserAuthenticated,
 } = Astro.props;
 ---
 
-<AppLayout title={title} mainCls={"container min-h-[calc(100dvh-4rem)] flex items-center flex-col justify-center"}>
+<AppLayout
+    title={title}
+    isUserAuthenticated={isUserAuthenticated}
+    mainCls={"container min-h-[calc(100dvh-4rem)] flex items-center flex-col justify-center"}>
     <slot />
 </AppLayout>

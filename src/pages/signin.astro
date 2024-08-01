@@ -1,21 +1,18 @@
 ---
 import CenteredLayout from '@/layouts/CenteredLayout.astro';
-import { app } from '../firebase/server';
-import { getAuth } from 'firebase-admin/auth';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button, buttonVariants }from '@/components/ui/button'
 import LoginWithGoogle from '@/components/ui/loginWithGoogleBtn';
+import { getAuthenticatedUser } from '@/firebase/serverUtils';
 
 // check if user is authenticated
-const auth = getAuth(app);
-if(Astro.cookies.has("__session")) {
-    const sessionCookies = Astro.cookies.get("__session").value;
-    const decodedCookies = await auth.verifySessionCookie(sessionCookies);
-    if(decodedCookies) {
-        return Astro.redirect('/dashboard');
-    }
+const user = await getAuthenticatedUser(Astro.cookies);
+const isUserAuthenticated = !!user;
+
+if(isUserAuthenticated) {
+    return Astro.redirect('/dashboard');
 }
 
 ---

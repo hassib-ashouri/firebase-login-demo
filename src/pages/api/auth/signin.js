@@ -15,6 +15,7 @@ export const GET = async ({request, cookies, redirect}) => {
     try {
         await auth.verifyIdToken(idToken);
     } catch(e) {
+        console.error(e);
         return new Response('Invalid token', {status: 401});
     }
 
