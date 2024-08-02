@@ -1,6 +1,8 @@
 ---
 import CenteredLayout from '@/layouts/CenteredLayout.astro';
 import { getAuthenticatedUser } from '@/firebase/serverUtils.js';
+import H1 from '@/components/ui/h1';
+import P from '@/components/ui/p';
 
 const user = await getAuthenticatedUser(Astro.cookies);
 const isUserAuthenticated = !!user;
@@ -11,6 +13,6 @@ if (isUserAuthenticated === false) {
 
 ---
 <CenteredLayout title="Dashboard" isUserAuthenticated={isUserAuthenticated}>
-    <h1>Welcome <span class="font-bold">{user.displayName}</span></h1>
-    <p>This is a protected dashboard that only you can see.</p>
+    <H1>Welcome {user.displayName}</H1>
+    <P>This is a protected dashboard that only you can see.</P>
 </CenteredLayout>
